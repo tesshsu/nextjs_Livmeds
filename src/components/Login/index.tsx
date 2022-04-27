@@ -8,12 +8,11 @@ export const Login = () => {
   return (
     <div className={styles.login_container}>
       <h1>
-        Choose your way to login <span>👋</span>
+        Pleqse login <span>👋</span>
       </h1>
+        <p>test-livmeds application</p>
       <div className={styles.btn_group}>
-        <Github />
         <Google />
-        <Facebook />
       </div>
     </div>
   )
