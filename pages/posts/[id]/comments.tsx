@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Posts } from "src/components/Post";
 import Fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import axios from "axios";
@@ -8,9 +7,10 @@ import { signOut, useSession } from "next-auth/react";
 import { GlobalContext } from "context";
 
 const PostDesc = (props: any) => {
-  const { state, dispatch } = useContext(GlobalContext);
+  // @ts-ignore
+  const { state } = useContext(GlobalContext);
 
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState<any[]>([]);
   const router = useRouter();
   const { id } = router.query;
   console.log("id=>", comments);
@@ -30,6 +30,8 @@ const PostDesc = (props: any) => {
     }
   }, []);
 
+  // @ts-ignore
+  // @ts-ignore
   return (
     <section style={{padding: "5rem"}}>
       <button
@@ -47,7 +49,7 @@ const PostDesc = (props: any) => {
         <main style={{padding: "1rem"}}>
           <h1>Comments</h1>
           <ul style={{ padding: "1rem" }}>
-            {comments.map((comment) => (
+            {comments?.map((comment: any) => (
               <li style={{ margin: "20px 0" }}>
                 <h2 style={{lineHeight: 1.6}}>ID: {comment.id}</h2>
                 <h2 style={{lineHeight: 1.6}}>name: {comment.name}</h2>
