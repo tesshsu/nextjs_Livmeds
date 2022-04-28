@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Posts } from "src/components/Post";
 import { useSession, signOut } from "next-auth/react";
 
 import Fetch from "isomorphic-unfetch";
@@ -10,7 +9,8 @@ import { GlobalContext } from "context";
 import { useRouter } from "next/router";
 
 const Post = (props: any) => {
-  const { state, dispatch } = useContext(GlobalContext);
+  // @ts-ignore
+    const { state } = useContext(GlobalContext);
   const router = useRouter();
   const [posts, setPosts] = useState([]);
   const getPosts = async () => {
@@ -47,9 +47,9 @@ const Post = (props: any) => {
           <ul>
             {posts.map((post) => (
                 <li  style={{lineHeight: 1.6}}>
-                  <Link href={`posts/${post.id}`}>
-                    <a key={post.id}  style={{color: '#1b8d38'}}>
-                      <h3>{post.title}</h3>
+                  <Link href={`posts/${post['id']}`}>
+                    <a key={post['id']}  style={{color: '#1b8d38'}}>
+                      <h3>{post['title']}</h3>
                     </a>
                   </Link>
                 </li>

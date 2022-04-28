@@ -1,20 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Posts } from "src/components/Post";
-import Fetch from "isomorphic-unfetch";
-import Link from "next/link";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/react";
-import { GlobalContext } from "context";
+import {useRouter} from "next/router";
+import {signOut} from "next-auth/react";
+import {GlobalContext} from "context";
 
 const PostDesc = (props: any) => {
-  const { state, dispatch } = useContext(GlobalContext);
+  // @ts-ignore
+  const { state } = useContext(GlobalContext);
 
-  const [desc, setDesc] = useState(null);
-  // console.log("props=>", props.postDesc);
+  const [desc, setDesc] = useState<any[]>([]);
   const router = useRouter();
   const { id } = router.query;
-  console.log("id=>", desc);
+
   const getPosts = async () => {
     try {
       const { data } = await axios.get(
@@ -31,6 +28,8 @@ const PostDesc = (props: any) => {
     }
   }, []);
 
+  // @ts-ignore
+  const {title, body} = desc;
   return (
       <section style={{padding: "5rem"}}>
       <button
@@ -48,9 +47,9 @@ const PostDesc = (props: any) => {
         <main style={{ padding: "1rem" }}>
           <h1>Description</h1>
           <div style={{ margin: "20px 0", padding: "1rem" }}>
-            <h2 style={{lineHeight: 1.6}}>Post Id: {desc.id}</h2>
-            <h2 style={{lineHeight: 1.8}}>Post Title: {desc.title}</h2>
-            <p style={{lineHeight: 1.4}}>{desc.body}</p>
+            <h2 style={{lineHeight: 1.6}}>Post Id: {id}</h2>
+            <h2 style={{lineHeight: 1.8}}>Post Title: {title}</h2>
+            <p style={{lineHeight: 1.4}}>{body}</p>
           </div>
           <button style={{padding: "1rem", fontSize: "0.75rem", color: "blue"}}
                   onClick={() => router.push(`/posts/${id}/comments`)}>
