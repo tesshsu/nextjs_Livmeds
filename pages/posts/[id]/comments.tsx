@@ -50,7 +50,7 @@ const PostDesc = (props: any) => {
           <h1>Comments</h1>
           <ul style={{ padding: "1rem" }}>
             {comments?.map((comment: any) => (
-              <li style={{ margin: "20px 0" }}>
+              <li key={comment.id} style={{ margin: "20px 0" }}>
                 <h2 style={{lineHeight: 1.6}}>ID: {comment.id}</h2>
                 <h2 style={{lineHeight: 1.6}}>name: {comment.name}</h2>
                 <h2 style={{lineHeight: 1.4}}>Email: {comment.email}</h2>

@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useSession, signOut } from "next-auth/react";
-
-import Fetch from "isomorphic-unfetch";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import axios from "axios";
 import Router from "next/router";
